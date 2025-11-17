@@ -1,0 +1,280 @@
+
+
+
+.tool-description{
+	align-self: center;
+	border: solid;
+	border-color: #6600aa;
+	padding: 1rem;
+	border-radius: 1rem;
+	color: #ffffff;
+	background-color: #006688;
+	text-align: center;
+}
+
+
+
+
+#todo{
+	flex-direction: column;
+	gap: 1.5rem;
+	height: 100%;
+	overflow-y: auto;
+}
+.todo-actions{
+	align-self: center;
+}
+.todo-list-body{
+	width: fit-content;
+	align-self: center;
+	border: solid;
+	border-radius: 0.5rem;
+}
+.todo-header{
+	display: flex;
+	border-bottom: solid;
+	
+}
+.list-name{
+	border-left: solid;
+	border-right: solid;
+	border-top: none;
+	border-bottom: none;
+	width: 100%;
+	font-size: x-large;
+}
+.todo-count{
+	align-self: center;
+	padding: 0.2rem;
+}
+.list-delete{
+	margin: 0.25rem;
+}
+.task{
+	border-top: solid;
+	display: flex;
+}
+.task-input{
+	width: 100%;
+	border: none;
+	border-right: solid;
+	border-left: solid;
+	
+}
+.add-item{
+	border: solid;
+	border-top: none;
+	border-bottom-right-radius: 0.8rem;
+	border-bottom-left-radius: 0.8rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+.todo-list{
+	display: grid;
+	place-items: center;
+}
+.task-input-done{
+	width: 100%;
+	border: none;
+	border-right: solid;
+	border-left: solid;
+	text-decoration: line-through;
+	background-color: #aaa;
+}
+.todo-actions img{
+	width: 32px;
+	height: 32px;
+}
+
+
+
+#time{
+	flex-direction: column;
+	gap: 1.5rem;
+	height: 100%;
+	overflow-y: auto;
+}
+#time h3{
+	margin: 0;
+}
+.timer{
+	border: solid;
+	border-radius: 2rem;
+	width: fit-content;
+	align-self: center;
+	padding: 1rem;
+}
+.time-inputs{
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	margin-bottom: 0.5rem;
+}
+.time-inputs input {
+	width: 60px;
+	padding: 4px;
+	border-radius: 0.75rem;
+}
+.time-inputs label {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	font-size: 0.9rem;
+}
+.time-display {
+	text-align: center;
+	font-size: 2rem;
+	margin: 0.5rem 0;
+	font-family: monospace;
+	border: solid;
+	border-radius: 1rem;
+	background-color: #fff;
+}
+.time-btns {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+}
+.time-btns button{
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0.3rem;
+	border-radius: 8px;
+	transition: background 0.2s;
+}
+.time-btns button:hover{
+	background: #ddd;
+}
+.time-btns img{
+	width: 32px;
+	height: 32px;
+}
+
+
+
+nav {
+	display: flex;
+	gap: 8px;
+	padding: 0.25rem;
+	background: #eee;
+	border-bottom: 1px solid #ccc;
+	width: fit-content;
+	margin: 0 auto;
+	border: solid;
+	border-radius: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+nav button {
+	border: none;
+	background: #ddd;
+	padding: 8px 14px;
+	cursor: pointer;
+	border-radius: 6px;
+	font-size: 14px;
+	transition: background 0.2s;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+nav button:hover {
+	background: #ccc;
+}
+nav button.active {
+	background: #bbb;
+}
+.tool {
+	display: none;
+}
+.tool.active {
+	display: flex;
+}
+
+
+
+#notepad {
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+.note-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
+}
+.note-header button {
+	padding: 0.25rem 0.5rem;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+#note-title {
+	font-weight: bold;
+	font-size: 1.5rem;
+	min-width: 120px;
+	text-align: center;
+	padding: 0.1rem;
+	border-style: solid;
+	border-radius: 10px;
+	border-color: #004488;
+	background-color: #0088FF;
+}
+#note-area {
+	flex: 1;
+	resize: none;
+	padding: 1rem;
+	font-family: monospace;
+	font-size: 1rem;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+.buttons {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
+.notepad-btn {
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+}
+.notepad-btn img {
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

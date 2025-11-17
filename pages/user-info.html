@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Info</title>
+	<style>
+		
+	</style>
+	<script type="module">
+		import { getUserName, setUserName } from "../main.js";
+		
+		window.addEventListener("DOMContentLoaded", async () => {
+			const user = await getUserName();
+			
+			if(user){
+				let name = document.getElementById("Name");
+				let color = document.getElementById("NameColor");
+				
+				name.value = user.name;
+				color.value = user.color;
+			}
+		});
+		document.getElementById("applyBtn").addEventListener("click", async () => {
+			const name = document.getElementById("Name").value.trim();
+			const color = document.getElementById("NameColor").value.trim();
+			const status = document.getElementById("status");
+			
+			if(name.length > 32){ status.textContent = "User Name to long."; return; }
+			if(name.includes(" ")){ status.textContent = "User Name cant have Spaces."; return; }
+			
+			setUserName(name,color);
+			
+			setTimeout(() => window.location.href = window.history.back(), 0);
+		});
+	</script>
+</head>
+<body style="background-color:#444444;">
+	<h2 align="center">User Info</h2>
+	
+	
+	<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<div style="align-items: center; display: flex;">
+			<input id="Name" placeholder="user-name">
+			<input type="color" id="NameColor" placeholder="color">
+		</div>
+		<button id="applyBtn">Apply</button>
+	</div>
+	
+	<p align="center" id="status"></p>
+	
+	<p align="center"><a href="javascript:void(0);" onclick="window.history.back()"><strong>Back</strong></a></p>
+</body>
+</html>

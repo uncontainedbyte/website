@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="editor.css">
+	<title>RGaming342's Editor</title>
+	<style>
+		.username{
+			position: absolute;
+			top: 1%;
+			left: 1%;
+			text-decoration: none;
+			color: var(--main-color);
+			:root{ --main-color: black; }
+			:visited{ text-decoration: none; color: var(--main-color); }
+			:link{ text-decoration: none; color: var(--main-color); }
+			:hover{ text-decoration: underline; color: blue; }
+			:active{ text-decoration: none; color: purple; }
+		}
+	</style>
+	<script src="editor.js" type="module"></script>
+	<script type="module">
+		import { getUserName } from "../main.js";
+		
+		window.addEventListener("DOMContentLoaded", async () => {
+			const user = await getUserName();
+			const usernameElement = document.querySelector('.username');
+			
+			if(user && user.name.length>0){
+				const Name = document.getElementById("UserInfo");
+				Name.textContent = `${user.name}`;
+				usernameElement.style.color = user.color;
+			}
+			/*
+			{
+			const modal = document.getElementById('my-modal');
+  const openBtn = document.getElementById('open-modal-btn');
+  const closeBtn = document.querySelector('.close-btn');
+
+  // When the user clicks the open button, show the modal
+  openBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+  // When the user clicks on <span> (x), close the modal
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // When the user clicks anywhere outside of the modal content, close it
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });}*/
+		});
+	</script>
+</head>
+<body style="background-color:#1B1E20;">
+	<h3 class="username"><a href="user-info.html" id="UserInfo">User-Info</a></h3>
+	<p align="center"><a href="../index.html"><strong>Home</strong></a></p>
+	<div class="menuBar"><!-- menu bar -->
+		<!--<button id="open-modal-btn">Open Window</button>
+		
+		<div id="my-modal" class="popupBase">
+		
+		<div style="background-color: #fefefe;margin: 15% auto;padding: 20px;border: 1px solid #888;width: 80%;max-width: 500px;border-radius: 8px;box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+			<span class="close-btn">&times;</span>
+			<h2>Custom Window</h2>
+			<p>This is my custom content inside the window.</p>
+		</div>
+		
+		</div>-->
+		
+		
+		<select id="language-select">
+			<option value="">none</option>
+		</select>
+		
+		<label for="fileInput" class="custom-file-upload">
+			Open File
+		</label>
+		<input style="display: none;" type="file" id="fileInput" name="fileInput">
+		
+		
+		<button id="downloadFile">Download File</button>
+		<button id="saveFile">Save</button>
+		<select id="file-selector"></select>
+		
+		<input type="text" id="newFileName" placeholder="New File">
+		<button id="deleteFile" style="color: #AA0000; background-color: #220000;">Delete</button>
+		
+		<!-- delete file popup -->
+		<div id="popup-deleteFile" class="popupBase">
+			<div class="popupBody" style="width: 200PX">
+				<span class="close-btn" id="closebtn-deleteFile">&times;</span>
+				<h2>Delete File?</h2>
+				<button id="yes-deleteFile">Yes</button>
+				<button id="no-deleteFile">No</button>
+			</div>
+		</div>
+		<!-- name file popup -->
+		<div id="popup-nameFile" class="popupBase">
+			<div class="popupBody" style="width: 200PX">
+				<span class="close-btn" id="closebtn-nameFile">&times;</span>
+				<h2>Create File</h2>
+				<input type="text" id="input-nameFile" placeholder="New File Name">
+				<span id="status-nameFile"></span>
+			</div>
+		</div>
+	</div>
+	<div class="editor"><!-- editor -->
+		<div class="editorArea" id="editor"  role="button"><!-- text section -->
+			
+		</div>
+	</div>
+	<footer>
+		<div class="footer-content" style="background-color: #333333; color: #CCCCCC; padding: 20px; border-top: 1px solid #555555;">
+			<p>
+				<span style="font-weight: bold; color: #FFD700;">Status: Early Development</span> (Pre-Beta). This is an experimental tool, and unexpected issues are likely.
+			</p>
+			<p>
+				<span style="font-weight: bold; color: #FF99CC;">Important:</span> I'm currently taking an <span style="font-style: italic; color: #99CCFF;">indefinite break</span> from development due to <span style="font-weight: bold; color: #FF4444;">burnout</span>. I sincerely appreciate your interest and plan to resume work on this project once I've had sufficient time to rest and recover.
+			</p>
+		</div>
+	</footer>
+	
+	<textarea class="hidden-input"></textarea>
+</body>
+</html>

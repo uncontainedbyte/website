@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="../favicon.ico">
+	<link rel="stylesheet" href="small-tools.css">
+	<script src="small-tools.js" type="module"></script>
+	<title>UncontainedByte's Tools</title>
+	<style>
+		.username{
+			margin: 2%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			text-decoration: none;
+			color: var(--main-color);
+			:root{ --main-color: black; }
+			:visited{ text-decoration: none; color: var(--main-color); }
+			:link{ text-decoration: none; color: var(--main-color); }
+			:hover{ text-decoration: underline; color: blue; }
+			:active{ text-decoration: none; color: purple; }
+		}
+	</style>
+	<script type="module">
+		import { getUserName } from "/main.js";
+		import { setup } from "./small-tools.js";
+		
+		window.addEventListener("DOMContentLoaded", async () => {
+			const user = await getUserName();
+			const usernameElement = document.querySelector('.username');
+			
+			if(user && user.name.length>0){
+				const Name = document.getElementById("UserInfo");
+				Name.textContent = `${user.name}`;
+				usernameElement.style.color = user.color;
+			}
+			
+			setup();
+			
+			const hidden = JSON.parse(localStorage.getItem("tool-descriptions-hidden") || "{}");
+			document.querySelectorAll(".tool-description").forEach(desc => {
+			const toolName = desc.dataset.tool;
+			const hideBtn = desc.querySelector(".hide-description");
+			
+			// Hide description if saved as hidden
+			if (!hidden[toolName]) {
+				desc.style.display = "block";
+			}else{
+				return;
+			}
+			
+			// Add hide button functionality
+			hideBtn.addEventListener("click", () => {
+				desc.style.display = "none";
+				hidden[toolName] = true;
+				localStorage.setItem("tool-descriptions-hidden", JSON.stringify(hidden));
+			});
+		});
+		
+		});
+	</script>
+</head>
+<body style="background-color:#666666;">
+	<h3 class="username"><a href="user-info.html" id="UserInfo">User-Info</a></h3>
+	
+	<nav class="nav-bar">
+		<button data-tab="home">Home</button>
+		<button data-tab="notepad">Note Pad</button>
+		<button data-tab="time">Time</button>
+		<button data-tab="todo">ToDo</button>
+		
+	</nav>
+	
+	
+	
+	<div id="todo" class="tool">
+		<div class="tool-description" style="display:none;" data-tool="todo">
+			<p>
+The To-Do tab allows you to create and manage multiple to-do lists</br>
+each with its own tasks, progress tracking, and customizable name.</br>
+Everything you create is stored locally on your device,</br>
+so your lists will automatically reload the next time you open the page.</br>
+</br>
+-Main Features-</br>
+Multiple To-Do Lists</br>
+Create unlimited lists using Add New List</br>
+Each list has its own name, task count, and independent tasks</br>
+</br>
+-Task Management-</br>
+Add tasks using the <strong>+</strong> button at the bottom of each list</br>
+Each task includes:</br>
+A checkbox to mark it done</br>
+A text field for the task description</br>
+A delete button (✖) to remove the task instantly</br>
+Tasks automatically update the list’s done / total counter</br>
+Completed tasks visually change style for clarity</br>
+</br>
+-List Controls-</br>
+Rename lists directly by editing their name field</br>
+Delete an entire list with the ✖ button (with confirmation)</br>
+Add tasks at any time</br>
+</br>
+-Global Actions-</br>
+<img style="width:1rem;height:1rem;" src="small-tools-notepad-download.png"> → Saves all your lists and tasks into a .json file</br>
+<img style="width:1rem;height:1rem;" src="small-tools-notepad-upload.png"> → Import a previously exported file</br>
+<img style="width:1rem;height:1rem;" src="small-tools-todo-locked.png"> / <img style="width:1rem;height:1rem;" src="small-tools-todo-unlocked.png"> → Prevents deleting lists or tasks while locked</br>
+</br>
+-Notes-</br>
+All data is saved automatically to Local Storage</br>
+Nothing is uploaded anywhere — your lists remain on your own device
+</p>
+			<button class="hide-description">Hide</button>
+		</div>
+		
+		<div class="todo-actions">
+			<button id="todo-add"><img src="small-tools-todo-addlist.png"></button>
+			<button id="todo-download"><img src="small-tools-notepad-download.png"></button>
+			<button id="todo-upload"><img src="small-tools-notepad-upload.png"></button>
+			<button id="todo-lock"><img src="small-tools-todo-unlocked.png"></button>
+		</div>
+		
+		<div id="lists">
+			<div class="todo-list">
+				<div class="todo-list-body">
+					<div class="todo-header">
+						<div class="todo-count">0/2</div>
+						<input class="list-name" type="text" value="tasks list">
+						<button class="list-delete" title="delete list">✖</button>
+					</div>
+					
+					<div class="tasks">
+						<div class="task">
+							<input type="checkbox">
+							<input class="task-input" type="text" value="task1">
+							<button>✖</button>
+						</div>
+						<div class="task">
+							<input type="checkbox" checked>
+							<input class="task-input" type="text" value="task2">
+							<button>✖</button>
+						</div>
+					</div>
+				</div>
+				<button class="add-item">+</button>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+	<div id="time" class="tool">
+		<div class="tool-description" style="display:none;" data-tool="timer">
+			<p>
+The Time tab provides two tools:</br>
+the Pomodoro Timer and the Standard Timer</br>
+designed to help with productivity, focus, and general time-tracking.</br>
+All settings, timers, and progress are stored locally on your device,</br>
+meaning nothing is uploaded and everything is preserved even if you refresh or close the page.</br>
+</br>
+-Pomodoro Timer-</br>
+A productivity timer based on alternating work and break sessions.</br>
+Customizable work, short break, and long break durations</br>
+Automatic cycling between sessions</br>
+Start / Pause / Reset controls</br>
+A sound plays when a session finishes</br>
+</br>
+-Standard Timer-</br>
+A simple and flexible countdown timer.</br>
+Set any custom hours, minutes, and seconds</br>
+Start / Pause / Reset controls</br>
+if hours/minutes/seconds are 0, then it will count up</br>
+A sound plays when the timer reaches zero</br>
+</br>
+-Note-</br>
+Audio alerts require the browser to allow sound playback.
+</p>
+			<button class="hide-description">Hide</button>
+		</div>
+		
+		<div id="pomodoro" class="timer" style="background-color: #ff0000;">
+			<h3 style="text-align:center">Pomodoro</h3>
+			
+			<div class="time-display" id="pomo-display">00:00:00</div>
+			
+			<div class="time-inputs">
+				<label>Work<input type="number" min="1" id="pomo-work"></label>
+				<label>Break<input type="number" min="1" id="pomo-break"></label>
+			</div>
+			
+			<div class="time-btns">
+				<button id="pomo-toggle"><img id="pomo-icon" src="small-tools-time-play.png"></button>
+				<button id="pomo-reset"><img src="small-tools-time-reset.png"></button>
+			</div>
+		</div>
+		
+		
+		<div id="standard" class="timer" style="background-color: #00ffff;">
+			<h3 style="text-align:center">Timer</h3>
+			
+			<div class="time-display" id="std-display">00:00:00</div>
+			
+			<div class="time-inputs">
+				<label>Hours<input type="number" min="0" id="std-hours"></label>
+				<label>Mins<input type="number" min="0" id="std-minutes"></label>
+				<label>Secs<input type="number" min="0" id="std-seconds"></label>
+			</div>
+			
+			<div class="time-btns">
+				<button id="std-toggle"><img id="std-icon" src="small-tools-time-play.png"></button>
+				<button id="std-reset"><img src="small-tools-time-reset.png"></button>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div id="notepad" class="tool">
+		<div class="tool-description" style="display:none;" data-tool="notepad">
+			<p>This notepad lets you create, edit, rename, delete, upload, and download notes</br>
+all stored safely on your device.</br>
+No data ever leaves your machine, and nothing is uploaded anywhere unless you choose to download or upload files yourself.</br>
+</br>
+-Features-</br>
+Multiple Notes: Create as many notes as you want using the New Note button.</br>
+Local Storage Saving: Notes are automatically saved to your browser’s local storage.</br>
+Closing or refreshing the page will NOT delete your notes.</br>
+Rename Notes: Click the note name to rename it instantly.</br>
+Navigate Notes: Use the left and right arrow buttons to move between your notes.</br>
+Delete Notes: Use the delete button to remove the current note.</br>
+You will be asked to confirm before it is deleted.</br>
+Download Notes: Save the current note as a .txt file to your device.</br>
+Upload Notes: Load a .txt file from your computer and turn it into a new note.</br>
+Clean and Simple: Everything happens instantly and on your device only.</br>
+</br>
+-Buttons-</br>
+◀ / ▶ Arrows: Switch between your notes.</br>
+<img src="small-tools-notepad-delete.png" style="width:1rem;height:1rem;" alt="Delete"> Delete: Deletes the current note after confirmation.</br>
+<img src="small-tools-notepad-rename.png" style="width:1rem;height:1rem;" alt="Rename"> Rename: Click the note name to edit it.</br>
+<img src="small-tools-notepad-newfile.png" style="width:1rem;height:1rem;" alt="New File"> New Note: Creates a fresh empty note.</br>
+<img src="small-tools-notepad-download.png" style="width:1rem;height:1rem;" alt="Download"> Download: Saves the current note as a file.</br>
+<img src="small-tools-notepad-upload.png" style="width:1rem;height:1rem;" alt="Upload"> Upload: Adds a note from a file on your device.</br>
+</br>
+-Privacy / Storage-</br>
+All notes stay entirely on your device using localStorage.</br>
+Nothing is sent online, and no data leaves your browser unless you manually download or upload files.</p>
+			<button class="hide-description">Hide</button>
+		</div>
+		
+		<div class="note-header">
+			<button id="prev-note">◀</button>
+			<span id="note-title"></span>
+			<button id="next-note">▶</button>
+		</div>
+		
+		<textarea id="note-area" cols="32" rows="24" placeholder="Type your notes here..."></textarea>
+		
+		<div class="buttons">
+			<button class="notepad-btn" id="new-note" title="New Note"><img src="small-tools-notepad-newfile.png" alt="New File"></button>
+			<button class="notepad-btn" id="rename-note" title="Rename Note"><img src="small-tools-notepad-rename.png" alt="Rename"></button>
+			<button class="notepad-btn" id="download-note" title="Download Note"><img src="small-tools-notepad-download.png" alt="Download"></button>
+			<button class="notepad-btn" id="upload-note" title="Upload Note"><img src="small-tools-notepad-upload.png" alt="Upload"></button>
+			<button class="notepad-btn" id="delete-note" title="Delete Note"><img src="small-tools-notepad-delete.png" alt="Delete"></button>
+			<input type="file" id="note-file-input" style="display:none;">
+		</div>
+		
+	</div>
+	
+</body>
+</html>
+
+
+
+

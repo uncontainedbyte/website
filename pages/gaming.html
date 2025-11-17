@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RGaming342's Games</title>
+	<style>
+		.username{
+			margin: 2%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			text-decoration: none;
+			color: var(--main-color);
+			:root{ --main-color: black; }
+			:visited{ text-decoration: none; color: var(--main-color); }
+			:link{ text-decoration: none; color: var(--main-color); }
+			:hover{ text-decoration: underline; color: blue; }
+			:active{ text-decoration: none; color: purple; }
+		}
+		
+	</style>
+	<script type="module">
+		import { getUserName } from "../main.js";
+		import { gameLoop, init } from "./games/pong.js";
+		
+		window.addEventListener("DOMContentLoaded", async () => {
+			const user = await getUserName();
+			const usernameElement = document.querySelector('.username');
+			
+			if(user && user.name.length>0){
+				const Name = document.getElementById("UserInfo");
+				Name.textContent = `${user.name}`;
+				usernameElement.style.color = user.color;
+			}
+			init();
+			gameLoop();
+		});
+	</script>
+</head>
+<body style="background-color:#666666;">
+	<h3 class="username"><a href="user-info.html" id="UserInfo">User-Info</a></h3>
+	
+	<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<!--
+		<canvas id="Display" width="32" height="32" style="border: solid;border-radius: 5px;background: black;width:128px; height:128px;"></canvas>
+		<p></p><canvas id="Display" width="64" height="64" style="border: solid;border-radius: 5px;background: black;width:256px; height:256px;"></canvas>
+-->
+		<p></p><canvas id="Display" width="160" height="120" style="image-rendering: pixelated;border: solid;border-radius: 7px;border-color:#333333;background: black;width:320px; height:240px;"></canvas>
+<!--
+		<p></p><canvas id="Display" width="256" height="224" style="border: solid;border-radius: 10px;background: black;width:384px; height:336px;"></canvas>
+		<p></p><canvas id="Display" width="320" height="240" style="border: solid;border-radius: 10px;background: black;width:480px; height:360px;"></canvas>
+		<p></p><canvas id="Display" width="640" height="480" style="border: solid;border-radius: 10px;background: black;"></canvas>
+		<p></p><canvas id="Display" width="800" height="600" style="border: solid;border-radius: 15px;background: black; "></canvas>
+-->
+	</div>
+	
+	<p align="center"><a href="../index.html"><strong>Home</strong></a></p>
+</body>
+</html>
