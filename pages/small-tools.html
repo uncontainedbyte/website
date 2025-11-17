@@ -7,34 +7,10 @@
 	<link rel="stylesheet" href="small-tools.css">
 	<script src="./small-tools.js" type="module"></script>
 	<title>UncontainedByte's Tools</title>
-	<style>
-		.username{
-			margin: 2%;
-			position: fixed;
-			top: 0;
-			left: 0;
-			text-decoration: none;
-			color: var(--main-color);
-			:root{ --main-color: black; }
-			:visited{ text-decoration: none; color: var(--main-color); }
-			:link{ text-decoration: none; color: var(--main-color); }
-			:hover{ text-decoration: underline; color: blue; }
-			:active{ text-decoration: none; color: purple; }
-		}
-	</style>
 	<script type="module">
-		import { getUserName } from "../main.js";
 		import { setup } from "./small-tools.js";
 		
 		window.addEventListener("DOMContentLoaded", async () => {
-			const user = await getUserName();
-			const usernameElement = document.querySelector('.username');
-			
-			if(user && user.name.length>0){
-				const Name = document.getElementById("UserInfo");
-				Name.textContent = `${user.name}`;
-				usernameElement.style.color = user.color;
-			}
 			
 			setup();
 			
