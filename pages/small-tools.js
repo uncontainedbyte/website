@@ -4,7 +4,7 @@
 export function setup(){
 	const savedTab = localStorage.getItem("active-tool");
 	
-	if (savedTab) {
+	if (savedTab && savedTab!=="home") {
 		const savedBtn = document.querySelector(`.nav-bar button[data-tab="${savedTab}"]`);
 		const savedTool = document.getElementById(savedTab);
 		
