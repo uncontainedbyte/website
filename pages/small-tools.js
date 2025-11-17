@@ -24,12 +24,12 @@ export function setup(){
 		btn.addEventListener('click', () => {
 			const tab = btn.dataset.tab;
 			
-			localStorage.setItem("active-tool", tab);
-			
 			if (tab === 'home') {
 				window.location.href = "../index.html";
 				return;
 			}
+			
+			localStorage.setItem("active-tool", tab);
 			
 			document.querySelectorAll('.nav-bar button').forEach(b => b.classList.remove('active'));
 			btn.classList.add('active');
